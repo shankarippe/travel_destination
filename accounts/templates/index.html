@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore The INDIA - Travel Agency</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa;">
+
+    <div class="header" style="background: url('{% static "images/TRAVEL2.jpg" %}') no-repeat center center/cover; color: white; text-align: center; padding: 80px 20px;">
+        <h1 style="font-size: 50px; margin: 0;color:rgb(255, 0, 89)">Explore The World</h1>
+        <p style="color:rgb(64, 0, 255)">Your dream destination awaits</p>
+        <ul>
+            <li>
+                {% if user.is_authenticated %}
+                    <h4 style="color:rgb(93, 0, 255)">Hello, {{user.first_name}}</h4><br>
+                    <a href="accounts/logout" style="color: white; text-decoration: none; font-weight: bold; padding: 10px 20px; background-color:rgb(0, 255, 76); border-radius: 5px;">LOGOUT</a>
+                    
+                {% else %}
+                <a href="accounts/register" style="color: white; text-decoration: none; font-weight: bold; padding: 10px 20px; background-color: #007bff; border-radius: 5px;">REGISTER</a>
+                <a href="accounts/login" style="color: white; text-decoration: none; font-weight: bold; padding: 10px 20px; background-color:rgb(0, 255, 76); border-radius: 5px;">LOGIN</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+    <section class="destinations" style="text-align: center; padding: 50px 20px;">
+        <h2 style="font-size: 36px; color: #007bff;">Popular Destinations</h2>
+        <div class="destination-list" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+
+            {% for dest in dests %}
+            <div class="card" style="background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 300px; overflow: hidden; text-align: center;">
+                <img src="{{ dest.img.url }}" alt="{{ dest.name }}" style="width: 100%; height: 200px;">
+                <h3 style="margin: 10px 0;">{{ dest.name }}</h3>
+                <p style="padding: 0 15px; font-size: 14px; color: #555;">{{ dest.desc }}</p>
+                <h4 style = "color:rgb(93, 0, 255);text-decoration:underline">"Price: ${{ dest.price }}"</h4>
+            </div>
+            {% empty %}
+                <p>No destinations available.</p>
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <section class="contact" style="text-align: center; padding: 40px; background-color: #007bff; color: white;">
+        <h2>Contact Us</h2>
+        <p>Plan your next adventure with us! Reach out at <a href="mailto:TRAVELANYWHERE@gmail.com" style="color: yellow; text-decoration: none; font-weight: bold;">TRAVELANYWHERE@gmail.com</a></p>
+        <P>Call us at <a href="tel:+1234567890" style="color: yellow; text-decoration: none; font-weight: bold;">+1234567890</a></P>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTER Page</title>
+</head>
+<body bgcolor = "skyblue">
+    <center>
+    <h1>Register</h1>
+    <form action="/accounts/register" method="POST">
+        {% csrf_token %}
+        <input type='text' name='username' placeholder="username"><br>
+        <input type="text" name="first_name" placeholder="first name"><br>
+        <input type="text" name="last_name" placeholder="last name"><br>
+        <input type ="email" name="email" placeholder="email"><br>
+        <input type='password' name='password1' placeholder="password"><br>
+        <input type='password' name='password2' placeholder="confirm password"><br>
+        
+        <input style = "color:grey;"type='submit' value='Register'>
+    </center>
+    </form>
+    <center>
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:rgb(255, 0, 0);text:bold">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+    </center>
+
+        
+</body>
+</html>
